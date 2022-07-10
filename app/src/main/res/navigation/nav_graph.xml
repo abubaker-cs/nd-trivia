@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_title"
         >
         <action
-            android:id="@+id/action_titleFragment_to_gameFragment"
+            android:id="@+id/onboarding_to_gamePlay"
             app:destination="@id/gameFragment"
             />
     </fragment>
@@ -23,23 +23,27 @@
         tools:layout="@layout/fragment_game"
         >
         <action
-            android:id="@+id/action_gameFragment_to_gameWonFragment"
+            android:id="@+id/gamePlay_to_gameWon"
             app:destination="@id/gameWonFragment"
             />
         <action
-            android:id="@+id/action_gameFragment_to_gameOverFragment2"
-            app:destination="@id/gameOverFragment2"
+            android:id="@+id/gamePlay_to_gameOver"
+            app:destination="@id/gameOverFragment"
+            app:popUpTo="@id/titleFragment"
+            app:popUpToInclusive="true"
             />
     </fragment>
     <fragment
-        android:id="@+id/gameOverFragment2"
+        android:id="@+id/gameOverFragment"
         android:name="com.example.android.navigation.ui.GameOverFragment"
         android:label="fragment_game_over"
         tools:layout="@layout/fragment_game_over"
         >
         <action
-            android:id="@+id/action_gameOverFragment2_to_gameFragment"
+            android:id="@+id/gameOver_to_gamePlay"
             app:destination="@id/gameFragment"
+            app:popUpTo="@id/titleFragment"
+            app:popUpToInclusive="false"
             />
     </fragment>
     <fragment
@@ -49,8 +53,9 @@
         tools:layout="@layout/fragment_game_won"
         >
         <action
-            android:id="@+id/action_gameWonFragment_to_gameFragment"
+            android:id="@+id/gameWon_to_gamePlay"
             app:destination="@id/gameFragment"
+            app:popUpTo="@id/titleFragment"
             />
     </fragment>
     <fragment

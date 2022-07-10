@@ -1,3 +1,12 @@
+# Principles of Navigation
+
+1. There's always a starting place.
+2. You can always go back. (Represents: Last-in, first-out structure, i.e. the Back Stack)
+3. Up goes Back (Mostly)
+4.
+
+## ---------------------
+
 # Navigation
 
 This is the toy app for lesson 3 of

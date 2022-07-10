@@ -42,7 +42,7 @@ class TitleFragment : Fragment() {
 
         // Method 03
         binding.playButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
+            Navigation.createNavigateOnClickListener(R.id.onboarding_to_gamePlay)
         )
 
         return binding.root
