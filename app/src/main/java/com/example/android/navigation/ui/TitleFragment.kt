@@ -1,12 +1,14 @@
 package com.example.android.navigation.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.android.navigation.R
 import com.example.android.navigation.databinding.FragmentTitleBinding
 
@@ -17,35 +19,46 @@ class TitleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        // setContentView() does not exist in fragments, that's why we will inflate the layout using
-        // DataBindingUtil.inflate()
-
         // Inflate the layout for this fragment
         val binding: FragmentTitleBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_title, container, false
         )
 
-        // Method 01
-        // Navigate: Title > Game
-        // The complete onClickListener with Navigation
-        // binding.playButton.setOnClickListener { view: View ->
-        //     view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
-        // }
-
-        // Method 02
-        //The complete onClickListener with Navigation using createNavigateOnClickListener
-        // binding.playButton.setOnClickListener { view: View ->
-        //    Navigation.findNavController(view).navigate(
-        //        R.id.action_titleFragment_to_gameFragment
-        //    )
-        // }
-
-        // Method 03
         binding.playButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.onboarding_to_gamePlay)
         )
 
         return binding.root
     }
+
+    // https://developer.android.com/jetpack/androidx/releases/activity#1.4.0-alpha01
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // The usage of an interface lets you inject your own implementation
+        val menuHost: MenuHost = requireActivity()
+
+        // Add menu items without using the Fragment Menu APIs
+        // Note how we can tie the MenuProvider to the viewLifecycleOwner
+        // and an optional Lifecycle.State (here, RESUMED) to indicate when
+        // the menu should be visible
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+                menuInflater.inflate(R.menu.overflow_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                // Reference: https://developer.android.com/guide/navigation/navigation-navigate#id
+                view.findNavController().navigate(R.id.aboutFragment)
+                return true
+            }
+
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+    }
+
+    // fun View.findNavController(): NavController = Navigation.findNavController(this)
+
 
 }
