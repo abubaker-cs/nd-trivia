@@ -19,6 +19,8 @@ package com.example.android.navigation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +30,24 @@ class MainActivity : AppCompatActivity() {
         @Suppress("UNUSED_VARIABLE")
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        // 1. To add support for the up button, we first need to make sure our Activity has an ActionBar
+        val navController = this.findNavController(R.id.myNavHostFragment)
+
+        // 2. Link the NavController to our ActionBar.
+        NavigationUI.setupActionBarWithNavController(this, navController)
+
+    }
+
+    // we need to have the Activity handle the navigateUp action from our Activity. To do this we override onSupportNavigateUp,
+    override fun onSupportNavigateUp(): Boolean {
+
+        // 3. Find the nav controller,
+        val navController = this.findNavController(R.id.myNavHostFragment)
+
+        // 4. we call navigateUp().
+        return navController.navigateUp()
+
     }
 
 

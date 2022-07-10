@@ -3,7 +3,15 @@
 1. There's always a starting place.
 2. You can always go back. (Represents: Last-in, first-out structure, i.e. the Back Stack)
 3. Up goes Back (Mostly)
-4.
+
+PopTo
+=====
+
+1. PopTo Not-Inclusive Pops off everything on the backstack until lit finds the referenced fragment
+   transaction.
+
+2. PopTo Inclusive Pops off everything on the backstack, including the referenced fragment
+   transaction.
 
 ## ---------------------
 
