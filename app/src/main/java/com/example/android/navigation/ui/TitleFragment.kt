@@ -31,6 +31,12 @@ class TitleFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Depreciated in API Level 28+ :
+     * 1. setHasOptionsMenu(true)
+     * 2. onCreateOptionsMenu
+     */
+
     // https://developer.android.com/jetpack/androidx/releases/activity#1.4.0-alpha01
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 

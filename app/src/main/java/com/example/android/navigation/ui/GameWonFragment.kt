@@ -65,10 +65,16 @@ class GameWonFragment : Fragment() {
     // Creating our Share Intent
     private fun getShareIntent(): Intent {
 
+        /**
+         * Depreciated: .fromBundle(arguments), instead used requireArguments()
+         */
         val args = GameWonFragmentArgs.fromBundle(requireArguments())
 
+        // Action: Send
         val shareIntent = Intent(Intent.ACTION_SEND)
 
+        // PutExtra:
+        // I mastered #UdacityAndroidTrivia with %1$d/%2$d correct questions!
         shareIntent.setType("text/plain")
             .putExtra(
                 Intent.EXTRA_TEXT,
