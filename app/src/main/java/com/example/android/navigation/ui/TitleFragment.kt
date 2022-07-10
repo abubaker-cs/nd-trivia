@@ -58,7 +58,4 @@ class TitleFragment : Fragment() {
 
     }
 
-    // fun View.findNavController(): NavController = Navigation.findNavController(this)
-
-
 }
