@@ -58,6 +58,7 @@ class GameWonFragment : Fragment() {
     // Starting an Activity with our new Intent
     private fun shareSuccess() {
 
+        // Initialize
         startActivity(getShareIntent())
 
     }
