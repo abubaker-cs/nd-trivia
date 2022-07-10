@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.android.navigation.R
-import com.example.android.navigation.databinding.FragmentGameWonBinding
+import com.example.android.navigation.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {
 
@@ -20,9 +21,25 @@ class TitleFragment : Fragment() {
         // DataBindingUtil.inflate()
 
         // Inflate the layout for this fragment
-        val binding: FragmentGameWonBinding = DataBindingUtil.inflate(
+        val binding: FragmentTitleBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_title, container, false
         )
+
+        // Method 01
+        // Navigate: Title > Game
+        // The complete onClickListener with Navigation
+        // binding.playButton.setOnClickListener { view: View ->
+        //     view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
+        // }
+
+        // Method 02
+        //The complete onClickListener with Navigation using createNavigateOnClickListener
+        binding.playButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                R.id.action_titleFragment_to_gameFragment
+            )
+        )
+
 
         return binding.root
     }
