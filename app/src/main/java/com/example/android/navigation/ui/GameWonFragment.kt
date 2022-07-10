@@ -101,6 +101,7 @@ class GameWonFragment : Fragment() {
                 // Add menu items here
                 menuInflater.inflate(R.menu.winner_menu, menu)
 
+                // Hide the "Share icon" if we cannot share
                 // check if the activity resolves
                 if (null == getShareIntent().resolveActivity(requireActivity().packageManager)) {
                     // hide the menu item if it doesn't resolve
@@ -113,6 +114,7 @@ class GameWonFragment : Fragment() {
                 // Reference: https://developer.android.com/guide/navigation/navigation-navigate#id
                 // view.findNavController().navigate(R.id.aboutFragment)
 
+                // Initialize the shareSuccess() when the user will click on the "share icon"
                 when (menuItem.itemId) {
                     R.id.share -> shareSuccess()
                 }
