@@ -67,10 +67,14 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         // 4. we call navigateUp().
-        // return navController.navigateUp()
         return NavigationUI.navigateUp(navController, drawerLayout)
 
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        val navController = findNavController(R.id.myNavHostFragment)
+//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+//    }
 
 
 }

@@ -2,7 +2,6 @@ package com.example.android.navigation.ui
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
@@ -62,12 +61,6 @@ class TitleFragment : Fragment() {
                     R.id.about ->
                         view.findNavController().navigate(R.id.about)
 
-                    else ->
-                        Toast.makeText(
-                            context,
-                            "You clicked offcanvas menu",
-                            Toast.LENGTH_LONG
-                        ).show()
                 }
 
                 // val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
