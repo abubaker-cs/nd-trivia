@@ -58,9 +58,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Toggle
+        // Toggle:
+        // Reference: https://www.youtube.com/watch?v=ei8A3mTPJOU&ab_channel=Dr.ParagShukla
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
-        drawerLayout.setDrawerListener(toggle)
+
+        // Initialize the toggle animation
+        drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         // 3. We also need to setup the NavigationUI to know about the #navView defined in the activity_main.xml
