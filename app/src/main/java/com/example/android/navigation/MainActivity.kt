@@ -19,11 +19,15 @@ package com.example.android.navigation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var drawerLayout: DrawerLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,11 +35,17 @@ class MainActivity : AppCompatActivity() {
         val binding =
             DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
+        // Initialize the DrawerLayout
+        drawerLayout = binding.drawerLayout
+
         // 1. To add support for the up button, we first need to make sure our Activity has an ActionBar
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         // 2. Link the NavController to our ActionBar.
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+
+        // 3. We also need to setup the NavigationUI to know about the #navView defined in the activity_main.xml
+        NavigationUI.setupWithNavController(binding.navView, navController)
 
     }
 
@@ -46,7 +56,8 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.myNavHostFragment)
 
         // 4. we call navigateUp().
-        return navController.navigateUp()
+        // return navController.navigateUp()
+        return NavigationUI.navigateUp(navController, drawerLayout)
 
     }
 
