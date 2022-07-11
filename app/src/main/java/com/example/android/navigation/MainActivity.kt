@@ -20,6 +20,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.ActivityMainBinding
@@ -44,6 +46,15 @@ class MainActivity : AppCompatActivity() {
         // 2. Link the NavController to our ActionBar.
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
+        // Only show the drawerLayout in the TitleFragment
+        navController.addOnDestinationChangedListener { _: NavController, nd: NavDestination, _: Bundle? ->
+            if (nd.id == R.id.titleFragment) {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            } else {
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
+        }
+
         // 3. We also need to setup the NavigationUI to know about the #navView defined in the activity_main.xml
         NavigationUI.setupWithNavController(binding.navView, navController)
 
@@ -63,3 +74,5 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+
+// Tutorial: https://blog.codemagic.io/android-navigation-introduction/
