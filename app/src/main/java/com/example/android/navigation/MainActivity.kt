@@ -17,6 +17,8 @@
 package com.example.android.navigation
 
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -29,6 +31,7 @@ import com.example.android.navigation.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var toggle: ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +58,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Toggle
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
+        drawerLayout.setDrawerListener(toggle)
+        toggle.syncState()
+
         // 3. We also need to setup the NavigationUI to know about the #navView defined in the activity_main.xml
         NavigationUI.setupWithNavController(binding.navView, navController)
 
@@ -71,10 +79,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        val navController = findNavController(R.id.myNavHostFragment)
-//        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-//    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (toggle.onOptionsItemSelected(item)) {
+            return true
+        }
+
+
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }
