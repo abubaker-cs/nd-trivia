@@ -2,6 +2,7 @@ package com.example.android.navigation.ui
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
@@ -53,11 +54,27 @@ class TitleFragment : Fragment() {
                 menuInflater.inflate(R.menu.overflow_menu, menu)
             }
 
+            // Handle the menu selection
+            // Reference: https://developer.android.com/guide/navigation/navigation-navigate#id
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                // Handle the menu selection
-                // Reference: https://developer.android.com/guide/navigation/navigation-navigate#id
-                view.findNavController().navigate(R.id.aboutFragment)
+
+                when (menuItem.itemId) {
+                    R.id.about ->
+                        view.findNavController().navigate(R.id.about)
+
+                    else ->
+                        Toast.makeText(
+                            context,
+                            "You clicked offcanvas menu",
+                            Toast.LENGTH_LONG
+                        ).show()
+                }
+
+                // val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+                // drawerLayout.closeDrawer(GravityCompat.START)
+
                 return true
+
             }
 
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
