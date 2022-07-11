@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         // 2. Link the NavController to our ActionBar.
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
-        // Only show the drawerLayout in the TitleFragment
+        // Only show the drawerLayout in the TitleFragment.
         navController.addOnDestinationChangedListener { _: NavController, nd: NavDestination, _: Bundle? ->
             if (nd.id == R.id.titleFragment) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
